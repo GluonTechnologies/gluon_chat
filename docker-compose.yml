@@ -1,7 +1,9 @@
 version: '3'
 
 services:
-  app:
+  gluon_chat_app:
     build: .
+    image: gluontech/gluon_chat
+    restart: unless-stopped
     ports:
-      - "5100:5000"
+      - ${CHAT_PORT}:5000

@@ -101,10 +101,11 @@ class GluonChat(LineReceiver):
                     message = "<%s>" % peer
                     self.sendLine(message.encode())
             else:
-                message = "<%s> %s" % (self.name, line_str)
                 if self.peer == "ALL":
+                    message = "<%s> %s" % (self.name, line_str)
                     for name, protocol in self.users.items():
                         if protocol != self:
                             protocol.sendLine(message.encode())
                 else:
+                    message = "<*%s> %s" % (self.name, line_str)
                     self.peer.sendLine(message.encode())
